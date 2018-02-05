@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel = "stylesheet" type = "text/css" href = "css/addformstyles.css"></link>
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <div class="row header">
+        <h1>Add Snacks Form &nbsp;</h1>
+        <h3>Fill out the form below to add Snacks!</h3>
+    </div>
+    <div class="row body">
+        <!--Dont forget form thymeleaf actions nesscary for thymeleaf to see route from controller and objects from model-->
+        <form th:action="@{/ProcessSnacks}" th:object="${snacks}" method="post">
+            <ul>
+
+                <li>
+                    <p class="left">
+                        <label for="snacks_brand" >Brand</label>
+                        <!--Make sure to use proper thymeleaf attributes for forms and fields not th:text-->
+                        <input th:field="${snacks.snackname}" type="text" name="snackname" placeholder="snackname" />
+                    </p>
+                    <p class="left">
+                        <label for="snack-inventoryprice">Inventory Number</label>
+                        <input th:field="${snacks.inventorynumber}"  type="text" name="inventorynumber" placeholder="inventorynumber" />
+                    </p>
+                    <p class="left">
+                        <label for="snacks-crunchiness">Crunchiness</label>
+                        <input th:field="${snacks.crunchiness}"  type="text" name="crunchiness" placeholder="rcrunchiness" />
+                    </p>
+                </li>
+                <li><div class="divider"></div></li>
+
+
+                <li>
+                    <input class="btn btn-submit" type="submit" value="Submit Snacks!"  th:href="@{/ProcessSnacks}"/>
+                </li>
+
+            </ul>
+        </form>
+    </div>
+</div>
+</body>
+</html>

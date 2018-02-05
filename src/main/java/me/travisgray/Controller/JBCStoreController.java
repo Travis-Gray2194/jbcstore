@@ -1,6 +1,7 @@
 package me.travisgray.Controller;
 
 import me.travisgray.Models.Cosmetics;
+import me.travisgray.Models.Snacks;
 import me.travisgray.Repositories.CleaningItemsRepository;
 import me.travisgray.Repositories.CosmeticsRepository;
 import me.travisgray.Repositories.JBCStoreRepository;
@@ -9,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -40,9 +38,9 @@ public class JBCStoreController {
     @RequestMapping("/")
     public String showHomepage(Model model){
 
-        model.addAttribute("snackslist",snacksRepository.findAll());
-        model.addAttribute("cleaningitemslist",cleaningItemsRepository.findAll());
-        model.addAttribute("cosmeticsrepositroy",cosmeticsRepository.findAll());
+        model.addAttribute("snacks",snacksRepository.findAll());
+        model.addAttribute("cleaningitems",cleaningItemsRepository.findAll());
+        model.addAttribute("cosmetics",cosmeticsRepository.findAll());
         model.addAttribute("jbcstore",jbcStoreRepository.findAll());
 
         return "index";
@@ -60,8 +58,8 @@ public class JBCStoreController {
 
     }
 
-    @PostMapping("/AddCosmetics")
-    public String saveCosmetics(@Valid @ModelAttribute("cosmetic") Cosmetics cosmetics, BindingResult result){
+    @PostMapping("/ProcessCosmetics")
+    public String saveCosmetics(@Valid @ModelAttribute("cosmetics") Cosmetics cosmetics, BindingResult result,Model model){
 
         {
 
@@ -72,12 +70,55 @@ public class JBCStoreController {
             }
 
             cosmeticsRepository.save(cosmetics);
+//            Getting all Cosmetic Entries from Repository for Thymeleaf View to Display all previous entries nessecary
+            model.addAttribute("cosmetics",cosmeticsRepository.findAll());
             return "cosmeticslist";
 
         }
 
 
+
     }
+
+    @RequestMapping("/update/{id}")
+    public String showallcosmetics(@PathVariable("id") long id, Model model){
+        model.addAttribute("cosmetics",cosmeticsRepository.findOne(id));
+        return "cosmeticslist";
+
+    }
+
+    @GetMapping("/AddSnacks")
+    public String addSnacks(Model model){
+
+        Snacks snacks = new Snacks();
+        model.addAttribute("snacks",new Snacks());
+
+        return "addsnacksform";
+
+    }
+
+    @PostMapping("/ProcessSnacks")
+    public String saveSnacks(@Valid @ModelAttribute("snacks") Snacks snacks, Model model, BindingResult result ){
+
+        {
+
+            if (result.hasErrors()) {
+
+                return "addsnacksform";
+
+            }
+
+            snacksRepository.save(snacks);
+            model.addAttribute("snacks",snacksRepository.findAll());
+            return "snackslist";
+
+        }
+
+    }
+
+
+
+
 
 
 

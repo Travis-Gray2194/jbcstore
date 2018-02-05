@@ -1,11 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Cosmetics List</title>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
 </head>
 <body>
-<h2>Show Cosmetics List</h2>
-
+<a th:href="@{/AddCosmetics}"> Add Cosmetics</a><br />
+<a th:href="@{/index}"> Show Index Page</a><br />
+<table>
+    <td>Brand</td>
+    <td>Price</td>
+    <td>Rating</td>
+    <td>Inventory</td>
+    <tr th:each="eachcosmetic : ${cosmetics}">
+        <td th:text="${eachcosmetic.brand}"> </td>
+        <td th:text="${eachcosmetic.price}"> </td>
+        <td th:text="${eachcosmetic.rating}"> </td>
+        <td th:text="${eachcosmetic.inventorynumber}"></td>
+    </tr>
+</table>
 </body>
 </html>

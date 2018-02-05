@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -31,8 +32,8 @@ public class CleaningItems {
     @NotEmpty
     private double price;
 
-
-    @Size(min = 1)
+//    @Min and @Max are used for validating numeric fields which could be String(representing number), int, short, byte etc and their respective primitive wrappers.
+    @Min(0)
     private int inventorynumber;
 
     public CleaningItems() {

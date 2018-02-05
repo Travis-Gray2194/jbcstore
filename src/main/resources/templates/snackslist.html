@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<a th:href="@{/AddSnacks}"> Add a Snack</a><br />
+<a th:href="@{/index}"> Show Index Page</a><br />
+<h1>Snack List</h1>
+<table>
+    <td>Snack Name</td>
+    <td>Crunchiness</td>
+    <td>Inventory</td>
+    <tr th:each="eachsnack : ${snacks}">
+        <td th:text="${eachsnack.snackname}"></td>
+        <td th:text="${eachsnack.crunchiness}"></td>
+        <td th:text="${eachsnack.inventorynumber}"></td>
+    </tr>
+</table>
+</body>
+</html>

@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * Created by ${TravisGray} on 2/5/2018.
@@ -24,15 +25,23 @@ public class JBCStore {
     @NotEmpty
     private String storename;
 
-    @NotNull
-    @NotEmpty
+
+    @Size(min = 1)
     private int openinghours;
 
-    @NotNull
-    @NotEmpty
+
+    @Size(min = 1)
     private int closinghours;
 
 
+    public JBCStore(String storename, int openinghours, int closinghours) {
+        this.storename = storename;
+        this.openinghours = openinghours;
+        this.closinghours = closinghours;
+    }
+
+    public JBCStore() {
+    }
 
     public String getStorename() {
         return storename;

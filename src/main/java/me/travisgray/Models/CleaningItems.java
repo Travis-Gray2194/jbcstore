@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * Created by ${TravisGray} on 2/5/2018.
@@ -24,19 +25,33 @@ public class CleaningItems {
 
     @NotNull
     @NotEmpty
-    private double price;
+    private String productname;
 
     @NotNull
     @NotEmpty
+    private double price;
+
+
+    @Size(min = 1)
     private int inventorynumber;
 
     public CleaningItems() {
     }
 
-    public CleaningItems(String strength, double price, int inventorynumber) {
+
+    public CleaningItems(String strength, String productname, double price, int inventorynumber) {
         this.strength = strength;
+        this.productname = productname;
         this.price = price;
         this.inventorynumber = inventorynumber;
+    }
+
+    public String getProductname() {
+        return productname;
+    }
+
+    public void setProductname(String productname) {
+        this.productname = productname;
     }
 
     public long getId() {

@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * Created by ${TravisGray} on 2/5/2018.
@@ -26,11 +27,24 @@ public class Snacks {
 
     @NotNull
     @NotEmpty
+    private String snackname;
+
+
+    @Size(min = 1)
     private int inventorynumber;
 
-    public Snacks(String crunchiness, int inventorynumber) {
+    public Snacks(String crunchiness, String snackname, int inventorynumber) {
         this.crunchiness = crunchiness;
+        this.snackname = snackname;
         this.inventorynumber = inventorynumber;
+    }
+
+    public String getSnackname() {
+        return snackname;
+    }
+
+    public void setSnackname(String snackname) {
+        this.snackname = snackname;
     }
 
     public Snacks() {

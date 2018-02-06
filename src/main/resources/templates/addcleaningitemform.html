@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel = "stylesheet" type = "text/css" href = "css/addformstyles.css"></link>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <div class="row header">
+        <h1>Add CleaningItem Form &nbsp;</h1>
+        <h3>Fill out the form below to add CleaningItem!</h3>
+    </div>
+    <div class="row body">
+        <!--Dont forget form thymeleaf actions nesscary for thymeleaf to see route from controller and objects from model-->
+        <form th:action="@{/ProcessCleaningItem}" th:object="${cleaningitem}" method="post">
+            <ul>
+
+                <li>
+                    <p class="left">
+                        <label for="cleaningitem_strength" >Strength</label>
+                        <!--Make sure to use proper thymeleaf attributes for forms and fields not th:text-->
+                        <input th:field="${cleaningitem.strength}" type="text" name="cleaningitem_strength" placeholder="cleaningitem_strength" />
+                    </p>
+                    <p class="left">
+                        <label for="cleaningitem_price">Price</label>
+                        <input th:field="${cleaningitem.price}"  type="text" name="price" placeholder="price" />
+                    </p>
+                    <p class="left">
+                        <label for="cleaningitem_productname">Product Name</label>
+                        <input th:field="${cleaningitem.productname}"  type="text" name="productname" placeholder="productname" />
+                    </p>
+                </li>
+                <li>
+                    <p class="left">
+                        <label for="cleaningitem_inventory">Inventory Quanity<span class="req">*</span></label>
+                        <input th:field="${cleaningitem.inventorynumber}" type="inventorynumber" name="inventorynumber" placeholder="Inventory Qunatiy" />
+                    </p>
+                </li>
+                <li><div class="divider"></div></li>
+
+
+                <li>
+                    <input class="btn btn-submit" type="submit" value="Submit Cleaning Item!"  th:href="@{/ProcessCleaningItem}"/>
+                </li>
+
+            </ul>
+        </form>
+    </div>
+</div>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>

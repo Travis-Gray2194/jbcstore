@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<a th:href="@{/AddCleaningItem}"> Add a Cleaning Item</a><br />
+<a th:href="@{/index}"> Show Index Page</a><br />
+<h1>Cleaning Item List</h1>
+<table>
+    <td>Strength</td>
+    <td>Price</td>
+    <td>Product Name</td>
+    <td>Inventory</td>
+    <tr th:each="eachcleaningitem : ${cleaningitem}">
+        <td th:text=${cleaningitem.strength}"></td>
+        <td th:text="${cleaningitem.price}"></td>
+        <td th:text="${cleaningitem.productname}"></td>
+        <td th:text="${cleaningitem.inventorynumber}"></td>
+    </tr>
+</table>
+</body>
+</html>

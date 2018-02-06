@@ -1,5 +1,6 @@
 package me.travisgray.Controller;
 
+import me.travisgray.Models.CleaningItems;
 import me.travisgray.Models.Cosmetics;
 import me.travisgray.Models.Snacks;
 import me.travisgray.Repositories.CleaningItemsRepository;
@@ -115,6 +116,37 @@ public class JBCStoreController {
         }
 
     }
+
+    @GetMapping("/AddCleaningItem")
+    public String addCleaningItem(Model model){
+
+        CleaningItems cleaningItems = new CleaningItems();
+        model.addAttribute("cleaningitem",new CleaningItems());
+
+        return "addcleaningitemform";
+
+    }
+
+    @PostMapping("/ProcessCleaningItem")
+    public String saveCleaningItem(@Valid @ModelAttribute("cleaningitem") CleaningItems cleaningItems, Model model, BindingResult result ){
+
+        {
+
+            if (result.hasErrors()) {
+
+                return "addcleaningitemform";
+
+            }
+
+            cleaningItemsRepository.save(cleaningItems);
+            model.addAttribute("cleaningitem",cleaningItemsRepository.findAll());
+            return "cleaningitemlist";
+
+        }
+
+    }
+
+
 
 
 
